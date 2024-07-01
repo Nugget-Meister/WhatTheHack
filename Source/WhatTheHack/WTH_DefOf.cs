@@ -137,4 +137,7 @@ public class WTH_DefOf
     public static WorkTypeDef Cleaning;
 
     public static ThingDef MineableSteel;
+
+    /**/
+    public static ThingDef VanometricPowerCell;
 }

@@ -6,7 +6,6 @@
 		<description>Mechanoids roam around this area</description>
 		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
 		<expandingIconTexture>World/WorldObjects/Expanding/Sites/Nothing</expandingIconTexture>
-		<descriptionDialogue>Locals have spotted several mechanoids roaming around this area. Beware.</descriptionDialogue>
 		<workerClass>WhatTheHack.WorldIncidents.SitePartWorker_RoamingMechanoids</workerClass>
 		<requiresFaction>true</requiresFaction>
 		<showFactionInInspectString>true</showFactionInInspectString>
@@ -30,7 +29,6 @@
 		<description>Given that the long range mineral scanner detected the presence of mechanoid parts from a relatively large distance in this location, there should be quite a few of them there, likely attached to mechanoids.</description>
 		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
 		<expandingIconTexture>World/WorldObjects/Expanding/Sites/Nothing</expandingIconTexture>
-		<descriptionDialogue>An area where a large concentration of mechanoid parts is detected by your long range mineral scanner</descriptionDialogue>
 		<workerClass>WhatTheHack.WorldIncidents.SitePartWorker_RoamingMechanoids</workerClass>
 		<requiresFaction>true</requiresFaction>
 		<showFactionInInspectString>true</showFactionInInspectString>

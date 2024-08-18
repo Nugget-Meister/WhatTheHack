@@ -5,15 +5,16 @@ using HugsLib.Settings;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using WhatTheHack.Comps;
+
+/*using WhatTheHack.Comps;
 using WhatTheHack.Recipes;
 using WhatTheHack.Storage;
-
+*/
 namespace WhatTheHack;
 
 public class Base : ModBase
 {
-    //settings
+   /* //settings
     internal static SettingHandle<string> tabsHandler;
     internal static SettingHandle<Dict2DRecordHandler> factionRestrictions;
 
@@ -114,12 +115,14 @@ public class Base : ModBase
 
         allMechs = (from td in DefDatabase<ThingDef>.AllDefs where IsMech(td) select td).ToList();
         allFactionNames = (from td in DefDatabase<FactionDef>.AllDefs
-            where IsHackingFaction(td)
-            select td.defName).ToList();
+                           where IsHackingFaction(td)
+                           select td.defName).ToList();
 
 
         //moodAutoDeactivate = Settings.GetHandle<int>("hackedMechChance", "WTH_MoodAutoDeactivate_Title".Translate(), "WTH_MoodAutoDeactivate_Description".Translate(), 30, Validators.IntRangeValidator(0, 100));
+
         //Factions
+
         tabsHandler = Settings.GetHandle("tabs", "WTH_FactionRestrictions_Label".Translate(),
             "WTH_FactionRestrictions_Description".Translate(), allFactionNames.First());
         tabsHandler.CustomDrawer = _ => false;
@@ -130,6 +133,7 @@ public class Base : ModBase
             "WTH_FactionRestrictions_NOK".Translate());
 
         //raids
+
         settingsGroup_Raids = Settings.GetHandle<bool>("settingsGroup_Raids",
             "WTH_SettingsGroup_Raids_Title".Translate(),
             "WTH_SettingsGroup_Raids_Description".Translate());
@@ -262,8 +266,8 @@ public class Base : ModBase
 
 
         foreach (var def in (from d in WorkTypeDefsUtility.WorkTypeDefsInPriorityOrder
-                     where d.visible && allowedMechWork.Contains(d)
-                     select d).Reverse())
+                             where d.visible && allowedMechWork.Contains(d)
+                             select d).Reverse())
         {
             moveWorkTypeLabelDown = !moveWorkTypeLabelDown;
             var d2 = new PawnColumnDef
@@ -310,8 +314,8 @@ public class Base : ModBase
 
         cancelTex = ContentFinder<Texture2D>.Get("UI/Cancel").GetReadableTexture();
         var allTurrets = (from td in DefDatabase<ThingDef>.AllDefs
-            where td.thingClass == typeof(Building_TurretGun)
-            select td).ToList();
+                          where td.thingClass == typeof(Building_TurretGun)
+                          select td).ToList();
         foreach (var turretDef in allTurrets)
         {
             cancelControlTurretTextures.Add(turretDef.defName,
@@ -332,8 +336,8 @@ public class Base : ModBase
     {
         //Add all mount turret recipes. 
         foreach (var def in from d in DefDatabase<ThingDef>.AllDefs
-                 where d.HasComp(typeof(CompMountable))
-                 select d)
+                            where d.HasComp(typeof(CompMountable))
+                            select d)
         {
             var r = new RecipeDef
             {
@@ -375,8 +379,8 @@ public class Base : ModBase
 
         //Add all remove module hediffs
         foreach (var def in from d in DefDatabase<HediffDef>.AllDefs
-                 where d.HasModExtension<DefModextension_Hediff>()
-                 select d)
+                            where d.HasModExtension<DefModextension_Hediff>()
+                            select d)
         {
             var modExt = def.GetModExtension<DefModextension_Hediff>();
             if (!modExt.canUninstall)
@@ -450,8 +454,8 @@ public class Base : ModBase
         }
 
         foreach (var factionDef in from td in DefDatabase<FactionDef>.AllDefs
-                 where allFactionNames.Contains(td.defName)
-                 select td)
+                                   where allFactionNames.Contains(td.defName)
+                                   select td)
         {
             if (!factionRestrictionsDict.InnerList.ContainsKey(factionDef.defName))
             {
@@ -532,5 +536,5 @@ public class Base : ModBase
     public ExtendedDataStorage GetExtendedDataStorage()
     {
         return _extendedDataStorage;
-    }
+    }*/
 }

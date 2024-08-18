@@ -1,13 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\1.4\Assemblies</OutputPath>
-    <TargetFramework>net48</TargetFramework>
+    <OutputPath>..\..\1.5\Assemblies</OutputPath>
+    <TargetFramework>net472</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>None</DebugType>
     <LangVersion>latest</LangVersion>
     <FileVersion>1.4.0</FileVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="hidden\**" />
+    <Compile Remove="hidena\**" />
+    <EmbeddedResource Remove="hidden\**" />
+    <EmbeddedResource Remove="hidena\**" />
+    <None Remove="hidden\**" />
+    <None Remove="hidena\**" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
       <Version>*</Version>

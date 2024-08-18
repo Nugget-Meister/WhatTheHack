@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -138,6 +139,7 @@ public class WTH_DefOf
 
     public static ThingDef MineableSteel;
 
-    /**/
+    /* Added afterwards */
     public static ThingDef VanometricPowerCell;
+    public static SitePartDef WTH_RoamingMechanoidsCore;
 }

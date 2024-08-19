@@ -8,6 +8,7 @@ namespace WhatTheHack;
 [DefOf]
 public class WTH_DefOf
 {
+
     public static QuestScriptDef WTH_LongRangeMineralScannerMechParts;
 
     public static HediffDef WTH_TargetingHacked;

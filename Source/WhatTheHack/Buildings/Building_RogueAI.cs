@@ -155,6 +155,7 @@ public class Building_RogueAI : Building
 
         DrawWarmup();
         abilityWarmUpTicks--;
+
         /*
         if (this.RefuelableComp.Fuel < Base.moodAutoDeactivate)
         {

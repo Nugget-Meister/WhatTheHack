@@ -55,7 +55,7 @@ public class WTH_DefOf
 
     public static JobDef WTH_ControlMechanoid_Goto;
 
-    //public static JobDef WTH_Ability;
+    // public static JobDef WTH_Ability;
     public static JobDef WTH_Ability_Repair;
     public static JobDef WTH_Ability_SelfDestruct;
     public static JobDef WTH_Ability_Overdrive;
@@ -122,7 +122,7 @@ public class WTH_DefOf
 
     public static SoundDef WTH_Sound_Overdrive;
 
-    //vanilla
+    // vanilla
     public static IncidentDef ShortCircuit;
     public static BodyPartDef Reactor;
     public static BodyPartGroupDef Waist;
@@ -142,4 +142,6 @@ public class WTH_DefOf
     /* Added afterwards */
     public static ThingDef VanometricPowerCell;
     public static SitePartDef WTH_RoamingMechanoidsCore;
+    public static ThingDef Mote_SparkFlash;
+
 }

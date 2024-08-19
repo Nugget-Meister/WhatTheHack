@@ -32,11 +32,14 @@ public class ExtendedPawnData : IExposable
         Scribe_Values.Look(ref shouldExplodeNow, "shouldExplodeNow");
         Scribe_Values.Look(ref isActive, "isActive");
         Scribe_References.Look(ref remoteControlLink, "remoteControlLink");
-        Scribe_References.Look(ref controllingAI, "controllingAI");
         Scribe_References.Look(ref caravanPlatform, "caravanPlatform");
         Scribe_References.Look(ref originalFaction, "originalFaction");
-        //Scribe_References.Look(ref turretMount, "turretMount");
         Scribe_Collections.Look(ref workTypes, "workTypes");
+        Scribe_References.Look(ref controllingAI, "controllingAI");
+
+        // Disabled until I figure out how it works
+
+        /*        Scribe_References.Look(ref turretMount, "turretMount");*/
     }
 
 

@@ -9,12 +9,17 @@
     <FileVersion>1.4.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="hidden\**" />
+    <Compile Remove="_hidden\**" />
     <Compile Remove="hidena\**" />
-    <EmbeddedResource Remove="hidden\**" />
+    <EmbeddedResource Remove="_hidden\**" />
     <EmbeddedResource Remove="hidena\**" />
-    <None Remove="hidden\**" />
+    <None Remove="_hidden\**" />
     <None Remove="hidena\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ThinkTree\ThinkNode_ConditionalMechanoidAbility.cs" />
+    <Compile Remove="ThinkTree\ThinkNode_ConditionalMechanoidRest.cs" />
+    <Compile Remove="ThinkTree\ThinkNode_ConditionalMechanoidWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
@@ -35,5 +40,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <Publicize Include="Assembly-CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_hidden\" />
   </ItemGroup>
 </Project>

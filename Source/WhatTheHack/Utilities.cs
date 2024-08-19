@@ -13,8 +13,7 @@ namespace WhatTheHack;
 
 internal static class Utilities
 {
-    public static void ThrowStaticText(Vector3 loc, Map map, string text, Color color,
-        float timeBeforeStartFadeout = -1f)
+    public static void ThrowStaticText(Vector3 loc, Map map, string text, Color color, float timeBeforeStartFadeout = -1f)
     {
         var intVec = loc.ToIntVec3();
         if (!intVec.InBounds(map))

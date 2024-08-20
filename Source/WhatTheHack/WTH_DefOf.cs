@@ -150,7 +150,6 @@ public class WTH_DefOf
 
     /* Added afterwards */
     public static ThingDef VanometricPowerCell;
-    public static SitePartDef WTH_RoamingMechanoidsCore;
     // public static ThingDef Mote_SparkFlash;
 
 }

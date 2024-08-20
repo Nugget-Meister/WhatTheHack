@@ -16,14 +16,14 @@ namespace WhatTheHack.WorldIncidents
 
         private static readonly IntRange TimeoutDaysRange = new IntRange(min: 25, max: 50);
 
-
-        /*protected override bool CanFireNowSub(IncidentParms parms)*/
+        // Commented to bypass errors
+        // protected override bool CanFireNowSub(IncidentParms parms)*
         public override bool CanFireNowSub(IncidentParms parms)
         {
             return base.CanFireNowSub(parms: parms) && Find.AnyPlayerHomeMap != null && TryFindTile(tile: out int num);
         }
-
-        /*protected override bool TryExecuteWorker(IncidentParms parms)*/
+        // Commented to bypass errors
+        // protected override bool TryExecuteWorker(IncidentParms parms)
         public override bool TryExecuteWorker(IncidentParms parms)
         {
             if (!TryFindTile(tile: out int tile))

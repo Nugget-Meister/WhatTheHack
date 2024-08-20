@@ -32,7 +32,7 @@ public class Base : ModBase
     internal static SettingHandle<int> failureChanceHackPoorly;
     internal static SettingHandle<int> failureChanceIntRaidTooLarge;
 
-    //internal static SettingHandle<int> moodAutoDeactivate;
+    internal static SettingHandle<int> moodAutoDeactivate;
 
     internal static SettingHandle<bool> settingsGroup_Balance;
     internal static SettingHandle<bool> maintenanceDecayEnabled;
@@ -496,12 +496,12 @@ public class Base : ModBase
         return false;
     }
 
-    /*    public override void WorldLoaded()
-        {
-            _extendedDataStorage = Find.World.GetComponent<ExtendedDataStorage>();
-            _extendedDataStorage.Cleanup();
-            base.WorldLoaded();
-        }*/
+    public override void WorldLoaded()
+    {
+        _extendedDataStorage = Find.World.GetComponent<ExtendedDataStorage>();
+        _extendedDataStorage.Cleanup();
+        base.WorldLoaded();
+    }
 
     /** --_ Removes comps if necessary
        Explanation: Vanilla doesn't support conditional comps. Example: For the repair module, we only want mechs to have comp_refuelable when the mech has one installed. 

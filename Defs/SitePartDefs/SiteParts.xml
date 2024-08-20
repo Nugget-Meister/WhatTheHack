@@ -4,16 +4,17 @@
 		<defName>WTH_RoamingMechanoidsPart</defName>
 		<label>Roaming mechanoids</label>
 		<description>Mechanoids roam around this area</description>
-		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
-		<expandingIconTexture>World/WorldObjects/Expanding/Sites/Nothing</expandingIconTexture>
 		<workerClass>WhatTheHack.WorldIncidents.SitePartWorker_RoamingMechanoids</workerClass>
+		<siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+    <expandingIconTexture>UI/Scyther_side</expandingIconTexture>
 		<requiresFaction>true</requiresFaction>
 		<showFactionInInspectString>true</showFactionInInspectString>
-		<approachOrderString>Visit {0}</approachOrderString>
-		<approachingReportString>Visiting {0}</approachingReportString>
-		<arrivedLetter>Your caravan has arrived. Mechanoid shrieks are heard from a distance. Prepare for battle.</arrivedLetter>
+		<approachOrderString>Investigate {0}</approachOrderString>
+		<approachingReportString>Investigate {0}</approachingReportString>
 		<arrivedLetterDef>NegativeEvent</arrivedLetterDef>
-		<wantsThreatPoints>True</wantsThreatPoints>
+		<arrivedLetter>Your caravan has arrived. Mechanoid shrieks are heard from a distance. Prepare for battle.</arrivedLetter>
+		<wantsThreatPoints>true</wantsThreatPoints>
+    <forceExitAndRemoveMapCountdownDurationDays>10</forceExitAndRemoveMapCountdownDurationDays>
 	</SitePartDef>
 
 	<GenStepDef>
@@ -38,7 +39,7 @@
 		<arrivedLetterDef>NeutralEvent</arrivedLetterDef>
 		<wantsThreatPoints>True</wantsThreatPoints>
 	</SitePartDef>
-	
+  
 	<GenStepDef>
 		<defName>WTH_MechanoidTemplePart</defName>
 		<linkWithSite>WTH_MechanoidTemplePart</linkWithSite>

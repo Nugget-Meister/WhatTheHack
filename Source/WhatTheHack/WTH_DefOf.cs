@@ -72,7 +72,6 @@ public class WTH_DefOf
     public static ThingDef WTH_MechanoidPlatform;
     public static ThingDef WTH_PortableChargingPlatform;
     public static ThingDef WTH_MechanoidParts;
-    public static ThingDef WTH_MineableMechanoidParts;
     public static ThingDef WTH_MechanoidChip;
     public static FleckDef WTH_Fleck_Charging;
     public static FleckDef WTH_Fleck_HealingCrossGreen;
@@ -81,6 +80,7 @@ public class WTH_DefOf
     public static ThingDef WTH_RogueAI;
     public static ThingDef WTH_ExtractedBrainData;
 
+    public static ThingDef WTH_MineableMechanoidParts;
 
     public static StatDef WTH_HackingSuccessChance;
     public static StatDef WTH_HackingMaintenanceSpeed;

@@ -73,8 +73,16 @@ public class WTH_DefOf
     public static ThingDef WTH_PortableChargingPlatform;
     public static ThingDef WTH_MechanoidParts;
     public static ThingDef WTH_MechanoidChip;
+
+
+    // Begin Migration from Fleck to Mote
     public static FleckDef WTH_Fleck_Charging;
     public static FleckDef WTH_Fleck_HealingCrossGreen;
+
+    // migrate fleck to mote
+    public static ThingDef WTH_Mote_Charging;
+    public static ThingDef WTH_Mote_HealingCrossGreen;
+
     public static ThingDef WTH_Apparel_MechControllerBelt;
     public static ThingDef WTH_MechanoidData;
     public static ThingDef WTH_RogueAI;

@@ -1,5 +1,5 @@
-  <Defs>
-  
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
 	<HediffDef ParentName="DiseaseBase">
 		<defName>WTH_ShutDown</defName>
 		<label>shut down</label>
@@ -8,14 +8,16 @@
 		<lethalSeverity>0</lethalSeverity>
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
 		<labelNoun>a shutdown command</labelNoun>
+    <description>placeholder text</description>
 	</HediffDef>
-	
+  
 	<HediffDef>
 		<defName>WTH_HeavilyDamaged</defName>
 		<isBad>true</isBad>
 		<label>heavily damaged</label>
 		<labelNoun>The sheer amount of damage to the mechanoid incapacitates it</labelNoun>
-		<stages>
+    <description>placeholder text</description>
+    <stages>
 			<li>
 				<capMods>
 					<li>
@@ -26,14 +28,15 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+  
 	<HediffDef>
 		<defName>WTH_DestroyedModule</defName>
 		<isBad>true</isBad>
 		<label>destroyed module</label>
+    <description>placeholder text</description>
 	</HediffDef>
-	
-  	<HediffDef>
+  
+  <HediffDef>
 		<defName>WTH_RegeneratedPart</defName>
 		<hediffClass>Hediff_Injury</hediffClass>
 		<tendable>true</tendable>
@@ -41,6 +44,7 @@
 		<label>regenerating part</label>
 		<defaultLabelColor>(1.0, 0.5, 0.1)</defaultLabelColor>
 		<labelNoun>a freshly replaced part that is regenerating</labelNoun>
+    <description>placeholder text</description>
 		<injuryProps>
 		  <painPerSeverity>0.01</painPerSeverity>
 		</injuryProps>
@@ -50,7 +54,8 @@
 		<defName>WTH_SpeedModule</defName>
 		<label>speed module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>	
+		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<stages>
 			<li>
 				<capMods>
@@ -76,7 +81,8 @@
 		<defName>WTH_CargoModule</defName>
 		<label>cargo module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>	
+		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<stages>
 			<li>
 				<capMods>
@@ -101,7 +107,8 @@
 		<defName>WTH_OpticSensorModule</defName>
 		<label>optic sensor module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>	
+		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<stages>
 			<li>
 				<capMods>
@@ -127,7 +134,8 @@
 		<defName>WTH_ArmorModule</defName>
 		<label>armor module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>	
+		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<stages>
 			<li>
 				<capMods>
@@ -153,7 +161,8 @@
 		<defName>WTH_GrowingModule</defName>
 		<label>growing module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>	
+		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<stages>
 			<li>
 				<capMods>
@@ -184,7 +193,8 @@
 		<defName>WTH_FirefightingModule</defName>
 		<label>firefighting module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>	
+		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<modExtensions>
 			<li Class="WhatTheHack.DefModExtension_Hediff">
 				<extraButcherProduct>WTH_FirefightingModule</extraButcherProduct>
@@ -203,7 +213,8 @@
 		<defName>WTH_CleaningModule</defName>
 		<label>cleaning module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>	
+		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<stages>
 			<li>
 				<capMods>
@@ -226,19 +237,20 @@
 				</workTypes>
 			</li>
 		</modExtensions>
-	  </HediffDef>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_HaulingModule</defName>
 		<label>hauling module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>	
+		<isBad>false</isBad>
+		<description>placeholder text</description>   
 		<stages>
 			<li>
 				<capMods>
 					<li>
-					  <capacity>Manipulation</capacity>
-					  <offset>-0.1</offset>
+						<capacity>Manipulation</capacity>
+						<offset>-0.1</offset>
 					</li>
 				</capMods>  
 			</li>
@@ -262,6 +274,7 @@
 		<label>Battery expansion</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<stages>
 			<li>
 				<capMods>
@@ -283,11 +296,12 @@
 		</modExtensions>
 	</HediffDef>
 	
-  	<HediffDef>
+  <HediffDef>
 		<defName>WTH_VanometricModule</defName>
 		<label>Vanometric module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<stages>
 			<li>
 				<capMods>
@@ -308,11 +322,12 @@
 		</modExtensions>
 	</HediffDef>
 	
-    <HediffDef>
+  <HediffDef>
 		<defName>WTH_SelfDestruct</defName>
 		<label>self destruct module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<isBad>false</isBad>
+    <description>placeholder text</description> 
 		<modExtensions>
 			<li Class="WhatTheHack.DefModExtension_Hediff">
 				<extraButcherProduct>WTH_SelfDestructModule</extraButcherProduct>
@@ -329,6 +344,7 @@
 		<label>overdrive module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<modExtensions>
 			<li Class="WhatTheHack.DefModExtension_Hediff">
 				<extraButcherProduct>WTH_OverdriveModule</extraButcherProduct>
@@ -346,6 +362,7 @@
 		<isBad>false</isBad>
 		<label>overdriving</label>
 		<maxSeverity>1.0</maxSeverity>
+    <description>placeholder text</description>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-12</severityPerDay>
@@ -382,6 +399,7 @@
 		<isBad>true</isBad>
 		<label>overdriving too much</label>
 		<maxSeverity>1.0</maxSeverity>
+    <description>placeholder text</description>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-12</severityPerDay>
@@ -412,11 +430,12 @@
 		</modExtensions>
 	</HediffDef>  
 	
-  	<HediffDef>
+  <HediffDef>
 		<defName>WTH_RepairModule</defName>
 		<label>repair module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<modExtensions>
 			<li Class="WhatTheHack.DefModExtension_Hediff">
 				<extraButcherProduct>WTH_RepairModule</extraButcherProduct>
@@ -428,11 +447,12 @@
 		</modExtensions>
 	  </HediffDef>
 	  	    
-	   <HediffDef>
+ <HediffDef>
 		<defName>WTH_BeltModule</defName>
 		<label>belt module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<isBad>false</isBad>		
+    <description>placeholder text</description>
 		<modExtensions>
 			<li Class="WhatTheHack.DefModExtension_Hediff">
 				<extraButcherProduct>WTH_BeltModule</extraButcherProduct>
@@ -443,11 +463,12 @@
 		</modExtensions>
 	  </HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_TurretModule</defName>
 		<label>turret module</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>		
+		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<modExtensions>
 			<li Class="WhatTheHack.DefModExtension_Hediff">
 				<extraButcherProduct>WTH_TurretModule</extraButcherProduct>
@@ -456,19 +477,21 @@
 				<destroyOnDeathChance>0.75</destroyOnDeathChance>
 			</li>
 		</modExtensions>
-	  </HediffDef>
-	  
-	  <HediffDef >
+	</HediffDef>
+
+	<HediffDef>
 		<defName>WTH_MountedTurret</defName>
 		<label>turret mounted</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<isBad>false</isBad>
-	  </HediffDef>
+    <description>placeholder text</description>
+	</HediffDef>
 	  
-	  <HediffDef ParentName="AddedBodyPartBase">
+	<HediffDef ParentName="AddedBodyPartBase">
 		<defName>WTH_RepairArm</defName>
 		<label>repair arm</label>
 		<labelNoun>a repair arm</labelNoun>
+    <description>placeholder text</description>
 		<addedPartProps>
 		  <solid>true</solid>
 		  <partEfficiency>0.8</partEfficiency>
@@ -495,21 +518,23 @@
 				<destroyOnDeathChance>0.75</destroyOnDeathChance>
 			</li>
 		</modExtensions>
-	  </HediffDef>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_SelfDestructed</defName>
 		<label>exploded</label>
 		<isBad>true</isBad>
-	  </HediffDef>
+    <description>placeholder text</description>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_Repairing</defName>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>charged repairing mechanites</label>
-		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-		<isBad>false</isBad>
-		<maxSeverity>1.0</maxSeverity>
+    <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
+    <isBad>false</isBad>
+    <maxSeverity>1.0</maxSeverity>
+    <description>placeholder text</description>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-5</severityPerDay>
@@ -530,8 +555,8 @@
 				<repairRate>400</repairRate>
 			</li>
 		</modExtensions>
-	  
-	  </HediffDef>
+	 </HediffDef>
+  
 	  <!--
 	  <HediffDef>
 		<defName>WTH_Overcharged</defName>
@@ -562,128 +587,137 @@
 	  </HediffDef>
 	  -->
 	  
-  	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_ReplacedAI</defName>
 		<label>AI replaced</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<isBad>false</isBad>
+    <description>placeholder text</description>
 		<modExtensions>
 			<li Class="WhatTheHack.DefModExtension_Hediff">
 				<extraButcherProduct>AIPersonaCore</extraButcherProduct>
 				<spawnChance>0.01</spawnChance>
 			</li>
 		</modExtensions>
-	  </HediffDef>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_TargetingHacked</defName>
 		<label>targeting hacked</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<causesNeed>WTH_Mechanoid_Maintenance</causesNeed>
 		<isBad>false</isBad>
-	  </HediffDef>
+    <description>placeholder text</description>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_BackupBattery</defName>
 		<label>running on backup battery</label>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<causesNeed>WTH_Mechanoid_Power</causesNeed>
 		<isBad>false</isBad>
-	  </HediffDef>
+    <description>placeholder text</description>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_TargetingHackedPoorly</defName>
 		<label>targeting hacked poorly</label>
 		<defaultLabelColor>(1.0, 0.5, 0.1)</defaultLabelColor>
 		<causesNeed>WTH_Mechanoid_Maintenance</causesNeed>
 		<isBad>false</isBad>
-	  </HediffDef>
+    <description>placeholder text</description>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_TargetingDestroyed</defName>
 		<label>targeting destroyed</label>
 		<defaultLabelColor>(1.0, 0.5, 0.1)</defaultLabelColor>
 		<isBad>false</isBad>
-	  </HediffDef>
+    <description>placeholder text</description>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_LowMaintenance</defName>
 		<label>poorly maintained</label>
 		<isBad>true</isBad>
+    <description>placeholder text</description>
 		<stages>
-		  <li>
+			<li>
 			<capMods>
-			  <li>
+				<li>
 				<capacity>Moving</capacity>
 				<offset>-0.10</offset>
-			  </li>
-			  <li>
-			  	<capacity>Manipulation</capacity>
+				</li>
+				<li>
+					<capacity>Manipulation</capacity>
 				<offset>-0.10</offset>
-			  </li>
+				</li>
 			</capMods>
-		  </li>
+			</li>
 		</stages>
-	  </HediffDef>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_VeryLowMaintenance</defName>
 		<label>very poorly maintained</label>
 		<isBad>true</isBad>
+    <description>placeholder text</description>
 		<stages>
-		  <li>
+			<li>
 			<capMods>
-			  <li>
+				<li>
 				<capacity>Moving</capacity>
 				<offset>-0.20</offset>
-			  </li>
-			  <li>
-			  	<capacity>Manipulation</capacity>
+				</li>
+				<li>
+					<capacity>Manipulation</capacity>
 				<offset>-0.20</offset>
-			  </li>
-			  <li>
-			  	<capacity>Consciousness</capacity>
+				</li>
+				<li>
+					<capacity>Consciousness</capacity>
 				<offset>-0.20</offset>
-			  </li>
+				</li>
 			</capMods>
-		  </li>
+			</li>
 		</stages>
-	  </HediffDef>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_VeryLowPower</defName>
 		<label>very low power</label>
 		<isBad>true</isBad>
+    <description>placeholder text</description>
 		<stages>
-		  <li>
+			<li>
 			<capMods>
-			  <li>
+				<li>
 				<capacity>Moving</capacity>
 				<offset>-0.30</offset>
-			  </li>
+				</li>
 			</capMods>
-		  </li>
+			</li>
 		</stages>
-	  </HediffDef>
+	</HediffDef>
 	  
-	  <HediffDef>
+	<HediffDef>
 		<defName>WTH_NoPower</defName>
 		<label>no power</label>
 		<isBad>true</isBad>
+    <description>placeholder text</description>
 		<stages>
-		  <li>
+			<li>
 			<capMods>
-			  <li>
+				<li>
 				<capacity>Moving</capacity>
 				<offset>-1.0</offset>
-			  </li>
-			  <li>
+				</li>
+				<li>
 				<capacity>Manipulation</capacity>
 				<offset>-1.0</offset>
-			  </li>
+				</li>
 			</capMods>
-		  </li>
+			</li>
 		</stages>
-	  </HediffDef>
-  </Defs>
+	</HediffDef>
+</Defs>
   

@@ -29,7 +29,7 @@ namespace WhatTheHack.WorldIncidents
             if (!TryFindTile(tile: out int tile))
                 return false;
 
-            Site site = SiteMaker.MakeSite(WTH_DefOf.WTH_RoamingMechanoidsCore, tile, Faction.OfMechanoids, true);
+            Site site = SiteMaker.MakeSite(WTH_DefOf.WTH_RoamingMechanoidsPart, tile, Faction.OfMechanoids, true);
 
             if (site == null)
                 return false;

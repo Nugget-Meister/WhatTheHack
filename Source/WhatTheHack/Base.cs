@@ -6,8 +6,8 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-//using WhatTheHack.Comps;
-//using WhatTheHack.Recipes;
+using WhatTheHack.Comps;
+using WhatTheHack.Recipes;
 using WhatTheHack.Storage;
 
 
@@ -75,292 +75,292 @@ public class Base : ModBase
 
     public override string ModIdentifier => "WhatTheHack";
 
-    /*    public override void DefsLoaded()
-        {
-            base.DefsLoaded();
-            //TODO: Store this somewhere global.
-            allowedMechWork.Add(WorkTypeDefOf.Hauling);
-            allowedMechWork.Add(WorkTypeDefOf.Growing);
-            allowedMechWork.Add(WorkTypeDefOf.Hunting);
-            allowedMechWork.Add(WorkTypeDefOf.Firefighter);
-            allowedMechWork.Add(WTH_DefOf.Cleaning);
-            allowedMechWork.Add(WTH_DefOf.PlantCutting);
+    public override void DefsLoaded()
+    {
+        base.DefsLoaded();
+        //TODO: Store this somewhere global.
+        allowedMechWork.Add(WorkTypeDefOf.Hauling);
+        allowedMechWork.Add(WorkTypeDefOf.Growing);
+        allowedMechWork.Add(WorkTypeDefOf.Hunting);
+        allowedMechWork.Add(WorkTypeDefOf.Firefighter);
+        allowedMechWork.Add(WTH_DefOf.Cleaning);
+        allowedMechWork.Add(WTH_DefOf.PlantCutting);
 
-            foreach (var wtd in allowedMechWork)
+        foreach (var wtd in allowedMechWork)
+        {
+            foreach (var skill in wtd.relevantSkills)
             {
-                foreach (var skill in wtd.relevantSkills)
+                if (!allowedMechSkills.Contains(skill))
                 {
-                    if (!allowedMechSkills.Contains(skill))
-                    {
-                        allowedMechSkills.Add(skill);
-                    }
+                    allowedMechSkills.Add(skill);
                 }
             }
+        }
 
-            allowedMechSkills.Add(SkillDefOf.Melee);
-            allowedMechSkills.Add(SkillDefOf.Shooting);
+        allowedMechSkills.Add(SkillDefOf.Melee);
+        allowedMechSkills.Add(SkillDefOf.Shooting);
 
-            allBelts = DefDatabase<ThingDef>.AllDefs.Where(t => Utilities.IsBelt(t.apparel)).ToList();
-            allSpawnableModules = DefDatabase<HediffDef>.AllDefs
-                .Where(h => h.GetModExtension<DefModextension_Hediff>() is { spawnChance: > 0 }).ToList();
+        allBelts = DefDatabase<ThingDef>.AllDefs.Where(t => Utilities.IsBelt(t.apparel)).ToList();
+        allSpawnableModules = DefDatabase<HediffDef>.AllDefs
+            .Where(h => h.GetModExtension<DefModextension_Hediff>() is { spawnChance: > 0 }).ToList();
 
-            bool IsMech(ThingDef d)
-            {
-                return d.race is { IsMechanoid: true };
-            }
+        bool IsMech(ThingDef d)
+        {
+            return d.race is { IsMechanoid: true };
+        }
 
-            bool IsHackingFaction(FactionDef d)
-            {
-                return !d.isPlayer && d != FactionDefOf.Mechanoid && d != FactionDefOf.Insect;
-            }
+        bool IsHackingFaction(FactionDef d)
+        {
+            return !d.isPlayer && d != FactionDefOf.Mechanoid && d != FactionDefOf.Insect;
+        }
 
-            allMechs = (from td in DefDatabase<ThingDef>.AllDefs where IsMech(td) select td).ToList();
-            allFactionNames = (from td in DefDatabase<FactionDef>.AllDefs
-                               where IsHackingFaction(td)
-                               select td.defName).ToList();
+        allMechs = (from td in DefDatabase<ThingDef>.AllDefs where IsMech(td) select td).ToList();
+        allFactionNames = (from td in DefDatabase<FactionDef>.AllDefs
+                           where IsHackingFaction(td)
+                           select td.defName).ToList();
 
 
-            //moodAutoDeactivate = Settings.GetHandle<int>("hackedMechChance", "WTH_MoodAutoDeactivate_Title".Translate(), "WTH_MoodAutoDeactivate_Description".Translate(), 30, Validators.IntRangeValidator(0, 100));
+        //moodAutoDeactivate = Settings.GetHandle<int>("hackedMechChance", "WTH_MoodAutoDeactivate_Title".Translate(), "WTH_MoodAutoDeactivate_Description".Translate(), 30, Validators.IntRangeValidator(0, 100));
 
-            //Factions
+        //Factions
 
-            tabsHandler = Settings.GetHandle("tabs", "WTH_FactionRestrictions_Label".Translate(),
-                "WTH_FactionRestrictions_Description".Translate(), allFactionNames.First());
-            tabsHandler.CustomDrawer = _ => false;
-            factionRestrictions = Settings.GetHandle<Dict2DRecordHandler>("factionRestrictions", "", "");
-            factionRestrictions.CustomDrawer = rect => GUIDrawUtility.CustomDrawer_MatchingPawns_active(rect,
-                factionRestrictions, allMechs,
-                allFactionNames, tabsHandler, "WTH_FactionRestrictions_OK".Translate(),
-                "WTH_FactionRestrictions_NOK".Translate());
+        tabsHandler = Settings.GetHandle("tabs", "WTH_FactionRestrictions_Label".Translate(),
+            "WTH_FactionRestrictions_Description".Translate(), allFactionNames.First());
+        tabsHandler.CustomDrawer = _ => false;
+        factionRestrictions = Settings.GetHandle<Dict2DRecordHandler>("factionRestrictions", "", "");
+        factionRestrictions.CustomDrawer = rect => GUIDrawUtility.CustomDrawer_MatchingPawns_active(rect,
+            factionRestrictions, allMechs,
+            allFactionNames, tabsHandler, "WTH_FactionRestrictions_OK".Translate(),
+            "WTH_FactionRestrictions_NOK".Translate());
 
-            //raids
+        //raids
 
-            settingsGroup_Raids = Settings.GetHandle<bool>("settingsGroup_Raids",
-                "WTH_SettingsGroup_Raids_Title".Translate(),
-                "WTH_SettingsGroup_Raids_Description".Translate());
-            settingsGroup_Raids.CustomDrawer = rect => GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_Raids,
-                "WTH_Expand".Translate() + "..",
+        settingsGroup_Raids = Settings.GetHandle<bool>("settingsGroup_Raids",
+            "WTH_SettingsGroup_Raids_Title".Translate(),
+            "WTH_SettingsGroup_Raids_Description".Translate());
+        settingsGroup_Raids.CustomDrawer = rect => GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_Raids,
+            "WTH_Expand".Translate() + "..",
+            "WTH_Collapse".Translate());
+
+        hackedMechChance = Settings.GetHandle("hackedMechChance", "WTH_HackedMechChance_Title".Translate(),
+            "WTH_HackedMechChance_Description".Translate(), 60, Validators.IntRangeValidator(0, 100));
+        hackedMechChance.VisibilityPredicate = () => settingsGroup_Raids;
+
+        maxHackedMechPoints = Settings.GetHandle("maxHackedMechPoints", "WTH_MaxHackedMechPoints_Title".Translate(),
+            "WTH_MaxHackedMechPoints_Description".Translate(), 50, Validators.IntRangeValidator(0, 500));
+        maxHackedMechPoints.VisibilityPredicate = () => settingsGroup_Raids;
+
+        minHackedMechPoints = Settings.GetHandle("minHackedMechPoints", "WTH_MinHackedMechPoints_Title".Translate(),
+            "WTH_MinHackedMechPoints_Description".Translate(), 0, Validators.IntRangeValidator(0, 500));
+        minHackedMechPoints.VisibilityPredicate = () => settingsGroup_Raids;
+
+        //hack failure
+        settingsGroup_HackFailure = Settings.GetHandle<bool>("settingsGroup_HackFailure",
+            "WTH_SettingsGroup_HackFailure_Title".Translate(), "WTH_SettingsGroup_HackFailure_Description".Translate());
+        settingsGroup_HackFailure.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_HackFailure, "WTH_Expand".Translate() + "..",
                 "WTH_Collapse".Translate());
 
-            hackedMechChance = Settings.GetHandle("hackedMechChance", "WTH_HackedMechChance_Title".Translate(),
-                "WTH_HackedMechChance_Description".Translate(), 60, Validators.IntRangeValidator(0, 100));
-            hackedMechChance.VisibilityPredicate = () => settingsGroup_Raids;
+        failureChanceNothing = Settings.GetHandle("failureChanceNothing", "WTH_FailureChance_Nothing_Title".Translate(),
+            "WTH_FailureChance_Nothing_Description".Translate(), 55);
+        failureChanceNothing.VisibilityPredicate = () => settingsGroup_HackFailure;
 
-            maxHackedMechPoints = Settings.GetHandle("maxHackedMechPoints", "WTH_MaxHackedMechPoints_Title".Translate(),
-                "WTH_MaxHackedMechPoints_Description".Translate(), 50, Validators.IntRangeValidator(0, 500));
-            maxHackedMechPoints.VisibilityPredicate = () => settingsGroup_Raids;
+        failureChanceCauseRaid = Settings.GetHandle("failureChanceCauseRaid",
+            "WTH_FailureChance_CauseRaid_Title".Translate(), "WTH_FailureChance_CauseRaid_Description".Translate(), 7);
+        failureChanceCauseRaid.VisibilityPredicate = () => settingsGroup_HackFailure;
 
-            minHackedMechPoints = Settings.GetHandle("minHackedMechPoints", "WTH_MinHackedMechPoints_Title".Translate(),
-                "WTH_MinHackedMechPoints_Description".Translate(), 0, Validators.IntRangeValidator(0, 500));
-            minHackedMechPoints.VisibilityPredicate = () => settingsGroup_Raids;
+        failureChanceShootRandomDirection = Settings.GetHandle("failureChanceShootRandomDirection",
+            "WTH_FailureChance_ShootRandomDirection_Title".Translate(),
+            "WTH_FailureChance_ShootRandomDirection_Description".Translate(), 15);
+        failureChanceShootRandomDirection.VisibilityPredicate = () => settingsGroup_HackFailure;
 
-            //hack failure
-            settingsGroup_HackFailure = Settings.GetHandle<bool>("settingsGroup_HackFailure",
-                "WTH_SettingsGroup_HackFailure_Title".Translate(), "WTH_SettingsGroup_HackFailure_Description".Translate());
-            settingsGroup_HackFailure.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_HackFailure, "WTH_Expand".Translate() + "..",
-                    "WTH_Collapse".Translate());
+        failureChanceHealToStanding = Settings.GetHandle("failureChanceHealToStanding",
+            "WTH_FailureChance_HealToStanding_Title".Translate(),
+            "WTH_FailureChance_HealToStanding_Description".Translate(), 8);
+        failureChanceHealToStanding.VisibilityPredicate = () => settingsGroup_HackFailure;
 
-            failureChanceNothing = Settings.GetHandle("failureChanceNothing", "WTH_FailureChance_Nothing_Title".Translate(),
-                "WTH_FailureChance_Nothing_Description".Translate(), 55);
-            failureChanceNothing.VisibilityPredicate = () => settingsGroup_HackFailure;
+        failureChanceHackPoorly = Settings.GetHandle("failureChanceHackPoorly",
+            "WTH_FailureChance_HackPoorly_Title".Translate(), "WTH_FailureChance_HackPoorly_Description".Translate(),
+            10);
+        failureChanceHackPoorly.VisibilityPredicate = () => settingsGroup_HackFailure;
 
-            failureChanceCauseRaid = Settings.GetHandle("failureChanceCauseRaid",
-                "WTH_FailureChance_CauseRaid_Title".Translate(), "WTH_FailureChance_CauseRaid_Description".Translate(), 7);
-            failureChanceCauseRaid.VisibilityPredicate = () => settingsGroup_HackFailure;
+        failureChanceIntRaidTooLarge = Settings.GetHandle("failureChanceIntRaidTooLarge",
+            "WTH_FailureChance_IntRaidTooLarge_Title".Translate(),
+            "WTH_FailureChance_IntRaidTooLarge_Description".Translate(), 10);
+        failureChanceIntRaidTooLarge.VisibilityPredicate = () => settingsGroup_HackFailure;
 
-            failureChanceShootRandomDirection = Settings.GetHandle("failureChanceShootRandomDirection",
-                "WTH_FailureChance_ShootRandomDirection_Title".Translate(),
-                "WTH_FailureChance_ShootRandomDirection_Description".Translate(), 15);
-            failureChanceShootRandomDirection.VisibilityPredicate = () => settingsGroup_HackFailure;
+        //balance
+        settingsGroup_Balance = Settings.GetHandle("settingsGroup_Balance",
+            "WTH_SettingsGroup_Balance_Title".Translate(), "WTH_SettingsGroup_Balance_Description".Translate(), true);
+        settingsGroup_Balance.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_Balance, "WTH_Expand".Translate() + "..",
+                "WTH_Collapse".Translate());
 
-            failureChanceHealToStanding = Settings.GetHandle("failureChanceHealToStanding",
-                "WTH_FailureChance_HealToStanding_Title".Translate(),
-                "WTH_FailureChance_HealToStanding_Description".Translate(), 8);
-            failureChanceHealToStanding.VisibilityPredicate = () => settingsGroup_HackFailure;
+        maintenanceDecayEnabled = Settings.GetHandle("maintenanceDecayEnabled",
+            "WTH_MaintenanceDedayEnabled_Title".Translate(), "WTH_MaintenanceDedayEnabled_Description".Translate(),
+            true);
+        maintenanceDecayEnabled.VisibilityPredicate = () => settingsGroup_Balance;
 
-            failureChanceHackPoorly = Settings.GetHandle("failureChanceHackPoorly",
-                "WTH_FailureChance_HackPoorly_Title".Translate(), "WTH_FailureChance_HackPoorly_Description".Translate(),
-                10);
-            failureChanceHackPoorly.VisibilityPredicate = () => settingsGroup_HackFailure;
+        maintenanceDecayModifier = Settings.GetHandle("maintenanceDecayModifier",
+            "WTH_MaintenanceDedayModifier_Title".Translate(), "WTH_MaintenanceDedayModifier_Description".Translate(),
+            1.0f, Validators.FloatRangeValidator(0f, 2f));
+        maintenanceDecayModifier.VisibilityPredicate = () => maintenanceDecayEnabled && settingsGroup_Balance;
+        maintenanceDecayModifier.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Filter(rect, maintenanceDecayModifier, false, 0f, 2f, highlight1);
 
-            failureChanceIntRaidTooLarge = Settings.GetHandle("failureChanceIntRaidTooLarge",
-                "WTH_FailureChance_IntRaidTooLarge_Title".Translate(),
-                "WTH_FailureChance_IntRaidTooLarge_Description".Translate(), 10);
-            failureChanceIntRaidTooLarge.VisibilityPredicate = () => settingsGroup_HackFailure;
+        repairConsumptionModifier = Settings.GetHandle("repairConsumptionModifier",
+            "WTH_RepairConsumptionModifier_Title".Translate(), "WTH_RepairConsumptionModifier_Description".Translate(),
+            1.0f, Validators.FloatRangeValidator(0.05f, 2f));
+        repairConsumptionModifier.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Filter(rect, repairConsumptionModifier, false, 0.05f, 2f, highlight1);
+        repairConsumptionModifier.VisibilityPredicate = () => settingsGroup_Balance;
 
-            //balance
-            settingsGroup_Balance = Settings.GetHandle("settingsGroup_Balance",
-                "WTH_SettingsGroup_Balance_Title".Translate(), "WTH_SettingsGroup_Balance_Description".Translate(), true);
-            settingsGroup_Balance.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Button(rect, settingsGroup_Balance, "WTH_Expand".Translate() + "..",
-                    "WTH_Collapse".Translate());
+        partDropRateModifier = Settings.GetHandle("partDropRateModifier", "WTH_PartDropRateModifier_Title".Translate(),
+            "WTH_PartDropRateModifier_Description".Translate(), 1.0f, Validators.FloatRangeValidator(0.05f, 5f));
+        partDropRateModifier.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Filter(rect, partDropRateModifier, false, 0.05f, 5f, highlight1);
+        partDropRateModifier.VisibilityPredicate = () => settingsGroup_Balance;
 
-            maintenanceDecayEnabled = Settings.GetHandle("maintenanceDecayEnabled",
-                "WTH_MaintenanceDedayEnabled_Title".Translate(), "WTH_MaintenanceDedayEnabled_Description".Translate(),
-                true);
-            maintenanceDecayEnabled.VisibilityPredicate = () => settingsGroup_Balance;
+        chipDropRateModifier = Settings.GetHandle("chipDropRateModifier", "WTH_ChipDropRateModifier_Title".Translate(),
+            "WTH_ChipDropRateModifier_Description".Translate(), 1.0f, Validators.FloatRangeValidator(0.05f, 5f));
+        chipDropRateModifier.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Filter(rect, chipDropRateModifier, false, 0.05f, 5f, highlight1);
+        chipDropRateModifier.VisibilityPredicate = () => settingsGroup_Balance;
 
-            maintenanceDecayModifier = Settings.GetHandle("maintenanceDecayModifier",
-                "WTH_MaintenanceDedayModifier_Title".Translate(), "WTH_MaintenanceDedayModifier_Description".Translate(),
-                1.0f, Validators.FloatRangeValidator(0f, 2f));
-            maintenanceDecayModifier.VisibilityPredicate = () => maintenanceDecayEnabled && settingsGroup_Balance;
-            maintenanceDecayModifier.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Filter(rect, maintenanceDecayModifier, false, 0f, 2f, highlight1);
+        powerFallModifier = Settings.GetHandle("powerFallModifier", "WTH_PowerFallModifier_Title".Translate(),
+            "WTH_PowerFallModifier_Description".Translate(), 1.0f, Validators.FloatRangeValidator(0.05f, 5f));
+        powerFallModifier.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Filter(rect, powerFallModifier, false, 0.05f, 5f, highlight1);
+        powerFallModifier.VisibilityPredicate = () => settingsGroup_Balance;
 
-            repairConsumptionModifier = Settings.GetHandle("repairConsumptionModifier",
-                "WTH_RepairConsumptionModifier_Title".Translate(), "WTH_RepairConsumptionModifier_Description".Translate(),
-                1.0f, Validators.FloatRangeValidator(0.05f, 2f));
-            repairConsumptionModifier.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Filter(rect, repairConsumptionModifier, false, 0.05f, 2f, highlight1);
-            repairConsumptionModifier.VisibilityPredicate = () => settingsGroup_Balance;
+        powerChargeModifier = Settings.GetHandle("powerChargeModifier", "WTH_PowerChargeModifier_Title".Translate(),
+            "WTH_PowerChargeModifier_Description".Translate(), 1.0f, Validators.FloatRangeValidator(0.05f, 5f));
+        powerChargeModifier.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Filter(rect, powerChargeModifier, false, 0.05f, 5f, highlight1);
+        powerChargeModifier.VisibilityPredicate = () => settingsGroup_Balance;
 
-            partDropRateModifier = Settings.GetHandle("partDropRateModifier", "WTH_PartDropRateModifier_Title".Translate(),
-                "WTH_PartDropRateModifier_Description".Translate(), 1.0f, Validators.FloatRangeValidator(0.05f, 5f));
-            partDropRateModifier.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Filter(rect, partDropRateModifier, false, 0.05f, 5f, highlight1);
-            partDropRateModifier.VisibilityPredicate = () => settingsGroup_Balance;
+        deathOnDownedChance = Settings.GetHandle("deathOnDownedChance", "WTH_DeathOnDownedChance_Title".Translate(),
+            "WTH_DeathOnDownedChance_Description".Translate(), 50f, Validators.FloatRangeValidator(0f, 100f));
+        deathOnDownedChance.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Filter(rect, deathOnDownedChance, false, 0f, 100f, highlight1);
+        deathOnDownedChance.VisibilityPredicate = () => settingsGroup_Balance;
 
-            chipDropRateModifier = Settings.GetHandle("chipDropRateModifier", "WTH_ChipDropRateModifier_Title".Translate(),
-                "WTH_ChipDropRateModifier_Description".Translate(), 1.0f, Validators.FloatRangeValidator(0.05f, 5f));
-            chipDropRateModifier.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Filter(rect, chipDropRateModifier, false, 0.05f, 5f, highlight1);
-            chipDropRateModifier.VisibilityPredicate = () => settingsGroup_Balance;
-
-            powerFallModifier = Settings.GetHandle("powerFallModifier", "WTH_PowerFallModifier_Title".Translate(),
-                "WTH_PowerFallModifier_Description".Translate(), 1.0f, Validators.FloatRangeValidator(0.05f, 5f));
-            powerFallModifier.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Filter(rect, powerFallModifier, false, 0.05f, 5f, highlight1);
-            powerFallModifier.VisibilityPredicate = () => settingsGroup_Balance;
-
-            powerChargeModifier = Settings.GetHandle("powerChargeModifier", "WTH_PowerChargeModifier_Title".Translate(),
-                "WTH_PowerChargeModifier_Description".Translate(), 1.0f, Validators.FloatRangeValidator(0.05f, 5f));
-            powerChargeModifier.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Filter(rect, powerChargeModifier, false, 0.05f, 5f, highlight1);
-            powerChargeModifier.VisibilityPredicate = () => settingsGroup_Balance;
-
-            deathOnDownedChance = Settings.GetHandle("deathOnDownedChance", "WTH_DeathOnDownedChance_Title".Translate(),
-                "WTH_DeathOnDownedChance_Description".Translate(), 50f, Validators.FloatRangeValidator(0f, 100f));
-            deathOnDownedChance.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Filter(rect, deathOnDownedChance, false, 0f, 100f, highlight1);
-            deathOnDownedChance.VisibilityPredicate = () => settingsGroup_Balance;
-
-            downedOnDeathThresholdChance = Settings.GetHandle("downedOnDeathThresholdChance",
-                "WTH_DownedOnDeathThresholdChance_Title".Translate(),
-                "WTH_DownedOnDeathThresholdChance_Description".Translate(), 25f, Validators.FloatRangeValidator(0f, 100f));
-            downedOnDeathThresholdChance.CustomDrawer = rect =>
-                GUIDrawUtility.CustomDrawer_Filter(rect, downedOnDeathThresholdChance, false, 0f, 100f, highlight1);
-            downedOnDeathThresholdChance.VisibilityPredicate = () => settingsGroup_Balance;
+        downedOnDeathThresholdChance = Settings.GetHandle("downedOnDeathThresholdChance",
+            "WTH_DownedOnDeathThresholdChance_Title".Translate(),
+            "WTH_DownedOnDeathThresholdChance_Description".Translate(), 25f, Validators.FloatRangeValidator(0f, 100f));
+        downedOnDeathThresholdChance.CustomDrawer = rect =>
+            GUIDrawUtility.CustomDrawer_Filter(rect, downedOnDeathThresholdChance, false, 0f, 100f, highlight1);
+        downedOnDeathThresholdChance.VisibilityPredicate = () => settingsGroup_Balance;
 
 
-            factionRestrictions = GetDefaultForFactionRestrictions(factionRestrictions, allMechs, allFactionNames);
-            GenerateImpliedRecipeDefs();
-            DefDatabase<ThingDef>.ResolveAllReferences();
-            SetMechMarketValue();
-            ImpliedPawnColumnDefsForMechs();
-        }*/
+        factionRestrictions = GetDefaultForFactionRestrictions(factionRestrictions, allMechs, allFactionNames);
+        GenerateImpliedRecipeDefs();
+        DefDatabase<ThingDef>.ResolveAllReferences();
+        SetMechMarketValue();
+        ImpliedPawnColumnDefsForMechs();
+    }
 
-    /*    private static void ImpliedPawnColumnDefsForMechs()
+    private static void ImpliedPawnColumnDefsForMechs()
+    {
+        var workTable = WTH_DefOf.WTH_Work_Mechanoids;
+        var moveWorkTypeLabelDown = false;
+
+
+        foreach (var def in (from d in WorkTypeDefsUtility.WorkTypeDefsInPriorityOrder
+                             where d.visible && allowedMechWork.Contains(d)
+                             select d).Reverse())
         {
-            var workTable = WTH_DefOf.WTH_Work_Mechanoids;
-            var moveWorkTypeLabelDown = false;
-
-
-            foreach (var def in (from d in WorkTypeDefsUtility.WorkTypeDefsInPriorityOrder
-                                 where d.visible && allowedMechWork.Contains(d)
-                                 select d).Reverse())
+            moveWorkTypeLabelDown = !moveWorkTypeLabelDown;
+            var d2 = new PawnColumnDef
             {
-                moveWorkTypeLabelDown = !moveWorkTypeLabelDown;
-                var d2 = new PawnColumnDef
+                defName = $"WorkPriority_{def.defName}",
+                workType = def,
+                moveWorkTypeLabelDown = moveWorkTypeLabelDown,
+                workerClass = typeof(PawnColumnWorker_WorkPriority),
+                sortable = true,
+                modContentPack = def.modContentPack
+            };
+            workTable.columns.Insert(
+                workTable.columns.FindIndex(x => x.Worker is PawnColumnWorker_CopyPasteWorkPriorities) + 1, d2);
+        }
+    }
+
+    public override void MapLoaded(Map map)
+    {
+        base.MapLoaded(map);
+        Texture2D cancelTex;
+        if (cancelControlMechTextures.Count == 0)
+        {
+            cancelTex = ContentFinder<Texture2D>.Get("UI/Cancel").GetReadableTexture();
+            var mechs = (from td in DefDatabase<ThingDef>.AllDefs where td.race is { IsMechanoid: true } select td)
+                .ToList();
+            foreach (var mechDef in mechs)
+            {
+                if (mechDef.GetConcreteExample() is not Pawn mech)
                 {
-                    defName = $"WorkPriority_{def.defName}",
-                    workType = def,
-                    moveWorkTypeLabelDown = moveWorkTypeLabelDown,
-                    workerClass = typeof(PawnColumnWorker_WorkPriority),
-                    sortable = true,
-                    modContentPack = def.modContentPack
-                };
-                workTable.columns.Insert(
-                    workTable.columns.FindIndex(x => x.Worker is PawnColumnWorker_CopyPasteWorkPriorities) + 1, d2);
+                    continue;
+                }
+
+                var curKindLifeStage = mech.ageTracker.CurKindLifeStage;
+                var mechTex = curKindLifeStage.bodyGraphicData.Graphic.MatSouth.mainTexture as Texture2D;
+                cancelControlMechTextures.Add(mech.def.defName,
+                    mechTex.GetReadableTexture().AddWatermark(cancelTex));
             }
-        }*/
+        }
 
-    /*   public override void MapLoaded(Map map)
-       {
-           base.MapLoaded(map);
-           Texture2D cancelTex;
-           if (cancelControlMechTextures.Count == 0)
-           {
-               cancelTex = ContentFinder<Texture2D>.Get("UI/Cancel").GetReadableTexture();
-               var mechs = (from td in DefDatabase<ThingDef>.AllDefs where td.race is { IsMechanoid: true } select td)
-                   .ToList();
-               foreach (var mechDef in mechs)
-               {
-                   if (mechDef.GetConcreteExample() is not Pawn mech)
-                   {
-                       continue;
-                   }
-
-                   var curKindLifeStage = mech.ageTracker.CurKindLifeStage;
-                   var mechTex = curKindLifeStage.bodyGraphicData.Graphic.MatSouth.mainTexture as Texture2D;
-                   cancelControlMechTextures.Add(mech.def.defName,
-                       mechTex.GetReadableTexture().AddWatermark(cancelTex));
-               }
-           }
-
-           if (cancelControlTurretTextures.Count != 0)
-           {
-               return;
-           }
-
-           cancelTex = ContentFinder<Texture2D>.Get("UI/Cancel").GetReadableTexture();
-           var allTurrets = (from td in DefDatabase<ThingDef>.AllDefs
-                             where td.thingClass == typeof(Building_TurretGun)
-                             select td).ToList();
-           foreach (var turretDef in allTurrets)
-           {
-               cancelControlTurretTextures.Add(turretDef.defName,
-                   turretDef.uiIcon.GetReadableTexture().AddWatermark(cancelTex));
-           }
-       }*/
-
-    /*    private static void GenerateImpliedRecipeDefs()
+        if (cancelControlTurretTextures.Count != 0)
         {
-            var extraRecipeDefs = ImpliedRecipeDefs();
-            foreach (var td in extraRecipeDefs)
-            {
-                DefGenerator.AddImpliedDef(td);
-            }
-        }*/
+            return;
+        }
 
-    /*    private static IEnumerable<RecipeDef> ImpliedRecipeDefs()
+        cancelTex = ContentFinder<Texture2D>.Get("UI/Cancel").GetReadableTexture();
+        var allTurrets = (from td in DefDatabase<ThingDef>.AllDefs
+                          where td.thingClass == typeof(Building_TurretGun)
+                          select td).ToList();
+        foreach (var turretDef in allTurrets)
         {
-            //Add all mount turret recipes. 
-            foreach (var def in from d in DefDatabase<ThingDef>.AllDefs
-                                where d.HasComp(typeof(CompMountable))
-                                select d)
+            cancelControlTurretTextures.Add(turretDef.defName,
+                turretDef.uiIcon.GetReadableTexture().AddWatermark(cancelTex));
+        }
+    }
+
+    private static void GenerateImpliedRecipeDefs()
+    {
+        var extraRecipeDefs = ImpliedRecipeDefs();
+        foreach (var td in extraRecipeDefs)
+        {
+            DefGenerator.AddImpliedDef(td);
+        }
+    }
+
+    private static IEnumerable<RecipeDef> ImpliedRecipeDefs()
+    {
+        //Add all mount turret recipes. 
+        foreach (var def in from d in DefDatabase<ThingDef>.AllDefs
+                            where d.HasComp(typeof(CompMountable))
+                            select d)
+        {
+            var r = new RecipeDef
             {
-                var r = new RecipeDef
-                {
-                    defName = $"WTH_Mount_{def.defName}",
-                    label = "WTH_Mount".Translate(def.label),
-                    jobString = "WTH_Mount_Jobstring".Translate(def.label),
-                    workerClass = typeof(Recipe_MountTurret),
-                    appliedOnFixedBodyParts = new List<BodyPartDef> { WTH_DefOf.Reactor },
-                    anesthetize = false,
-                    effectWorking = DefDatabase<EffecterDef>.AllDefs.FirstOrDefault(ed => ed.defName == "Repair"),
-                    surgerySuccessChanceFactor = 99999f,
-                    modContentPack = def.modContentPack,
-                    workAmount = 2000f,
-                    addsHediff = WTH_DefOf.WTH_MountedTurret
-                };
-                var ic = new IngredientCount();
-                ic.SetBaseCount(1f);
-                ic.filter.SetAllow(def, true);
-                r.ingredients.Add(ic);
-                r.fixedIngredientFilter.SetAllow(def, true);
-                r.recipeUsers = new List<ThingDef>();
-                r.modExtensions = new List<DefModExtension>
+                defName = $"WTH_Mount_{def.defName}",
+                label = "WTH_Mount".Translate(def.label),
+                jobString = "WTH_Mount_Jobstring".Translate(def.label),
+                workerClass = typeof(Recipe_MountTurret),
+                appliedOnFixedBodyParts = new List<BodyPartDef> { WTH_DefOf.Reactor },
+                anesthetize = false,
+                effectWorking = DefDatabase<EffecterDef>.AllDefs.FirstOrDefault(ed => ed.defName == "Repair"),
+                surgerySuccessChanceFactor = 99999f,
+                modContentPack = def.modContentPack,
+                workAmount = 2000f,
+                addsHediff = WTH_DefOf.WTH_MountedTurret
+            };
+            var ic = new IngredientCount();
+            ic.SetBaseCount(1f);
+            ic.filter.SetAllow(def, true);
+            r.ingredients.Add(ic);
+            r.fixedIngredientFilter.SetAllow(def, true);
+            r.recipeUsers = new List<ThingDef>();
+            r.modExtensions = new List<DefModExtension>
                 {
                     new DefModExtension_Recipe
                     {
@@ -368,41 +368,41 @@ public class Base : ModBase
                         requiredHediff = WTH_DefOf.WTH_TurretModule
                     }
                 };
-                foreach (var current in DefDatabase<ThingDef>.AllDefs.Where(d =>
-                             d.category == ThingCategory.Pawn && d.race.IsMechanoid))
-                {
-                    r.recipeUsers.Add(current);
-                }
-
-                r.ResolveReferences();
-                yield return r;
+            foreach (var current in DefDatabase<ThingDef>.AllDefs.Where(d =>
+                         d.category == ThingCategory.Pawn && d.race.IsMechanoid))
+            {
+                r.recipeUsers.Add(current);
             }
 
-            //Add all remove module hediffs
-            foreach (var def in from d in DefDatabase<HediffDef>.AllDefs
-                                where d.HasModExtension<DefModextension_Hediff>()
-                                select d)
-            {
-                var modExt = def.GetModExtension<DefModextension_Hediff>();
-                if (!modExt.canUninstall)
-                {
-                    continue;
-                }
+            r.ResolveReferences();
+            yield return r;
+        }
 
-                var r = new RecipeDef
-                {
-                    defName = $"WTH_UninstallModule_{def.defName}",
-                    label = "WTH_UninstallModule".Translate(def.label),
-                    jobString = "WTH_UninstallModule_Jobstring".Translate(def.label),
-                    appliedOnFixedBodyParts = new List<BodyPartDef> { WTH_DefOf.Reactor },
-                    workerClass = typeof(Recipe_ModifyMechanoid_UninstallModule),
-                    anesthetize = false,
-                    effectWorking = DefDatabase<EffecterDef>.AllDefs.FirstOrDefault(ed => ed.defName == "Repair"),
-                    surgerySuccessChanceFactor = 99999f,
-                    modContentPack = def.modContentPack,
-                    workAmount = 5000f,
-                    recipeUsers = new List<ThingDef>(),
-                    modExtensions = new List<DefModExtension>
+        //Add all remove module hediffs
+        foreach (var def in from d in DefDatabase<HediffDef>.AllDefs
+                            where d.HasModExtension<DefModextension_Hediff>()
+                            select d)
+        {
+            var modExt = def.GetModExtension<DefModextension_Hediff>();
+            if (!modExt.canUninstall)
+            {
+                continue;
+            }
+
+            var r = new RecipeDef
+            {
+                defName = $"WTH_UninstallModule_{def.defName}",
+                label = "WTH_UninstallModule".Translate(def.label),
+                jobString = "WTH_UninstallModule_Jobstring".Translate(def.label),
+                appliedOnFixedBodyParts = new List<BodyPartDef> { WTH_DefOf.Reactor },
+                workerClass = typeof(Recipe_ModifyMechanoid_UninstallModule),
+                anesthetize = false,
+                effectWorking = DefDatabase<EffecterDef>.AllDefs.FirstOrDefault(ed => ed.defName == "Repair"),
+                surgerySuccessChanceFactor = 99999f,
+                modContentPack = def.modContentPack,
+                workAmount = 5000f,
+                recipeUsers = new List<ThingDef>(),
+                modExtensions = new List<DefModExtension>
                     {
                         new DefModExtension_Recipe
                         {
@@ -410,91 +410,91 @@ public class Base : ModBase
                             requiredHediff = def
                         }
                     }
-                };
-                foreach (var current in DefDatabase<ThingDef>.AllDefs.Where(d =>
-                             d.category == ThingCategory.Pawn && d.race.IsMechanoid))
-                {
-                    r.recipeUsers.Add(current);
-                }
-
-                r.ResolveReferences();
-                yield return r;
+            };
+            foreach (var current in DefDatabase<ThingDef>.AllDefs.Where(d =>
+                         d.category == ThingCategory.Pawn && d.race.IsMechanoid))
+            {
+                r.recipeUsers.Add(current);
             }
-        }*/
 
-    /*    private static void SetMechMarketValue()
+            r.ResolveReferences();
+            yield return r;
+        }
+    }
+
+    private static void SetMechMarketValue()
+    {
+        foreach (var kind in from kd in DefDatabase<PawnKindDef>.AllDefs where kd.IsMechanoid() select kd)
         {
-            foreach (var kind in from kd in DefDatabase<PawnKindDef>.AllDefs where kd.IsMechanoid() select kd)
+            if (kind.race.BaseMarketValue < 1.0f && kind.combatPower < 10000f)
             {
-                if (kind.race.BaseMarketValue < 1.0f && kind.combatPower < 10000f)
-                {
-                    kind.race.BaseMarketValue = kind.combatPower * 3.0f;
-                }
+                kind.race.BaseMarketValue = kind.combatPower * 3.0f;
             }
-        }*/
+        }
+    }
 
-    /*    public static SettingHandle<Dict2DRecordHandler> GetDefaultForFactionRestrictions(
-            SettingHandle<Dict2DRecordHandler> factionRestrictions, List<ThingDef> allMechs, List<string> allFactionNames)
+    public static SettingHandle<Dict2DRecordHandler> GetDefaultForFactionRestrictions(
+        SettingHandle<Dict2DRecordHandler> factionRestrictions, List<ThingDef> allMechs, List<string> allFactionNames)
+    {
+        factionRestrictions.Value =
+            GetDefaultForFactionRestrictions(factionRestrictions.Value, allMechs, allFactionNames);
+        return factionRestrictions;
+    }
+
+    public static Dict2DRecordHandler GetDefaultForFactionRestrictions(Dict2DRecordHandler factionRestrictionsDict,
+        List<ThingDef> allMechs, List<string> allFactionNames)
+    {
+        if (factionRestrictionsDict == null)
         {
-            factionRestrictions.Value =
-                GetDefaultForFactionRestrictions(factionRestrictions.Value, allMechs, allFactionNames);
-            return factionRestrictions;
-        }*/
+            factionRestrictionsDict = new Dict2DRecordHandler();
+        }
 
-    /*    public static Dict2DRecordHandler GetDefaultForFactionRestrictions(Dict2DRecordHandler factionRestrictionsDict,
-            List<ThingDef> allMechs, List<string> allFactionNames)
+        if (factionRestrictionsDict.InnerList == null)
         {
-            if (factionRestrictionsDict == null)
-            {
-                factionRestrictionsDict = new Dict2DRecordHandler();
-            }
+            factionRestrictionsDict.InnerList = new Dictionary<string, Dictionary<string, Record>>();
+        }
 
-            if (factionRestrictionsDict.InnerList == null)
-            {
-                factionRestrictionsDict.InnerList = new Dictionary<string, Dictionary<string, Record>>();
-            }
-
-            foreach (var factionDef in from td in DefDatabase<FactionDef>.AllDefs
-                                       where allFactionNames.Contains(td.defName)
-                                       select td)
-            {
-                if (!factionRestrictionsDict.InnerList.ContainsKey(factionDef.defName))
-                {
-                    factionRestrictionsDict.InnerList.Add(factionDef.defName, new Dictionary<string, Record>());
-                }
-            }
-
-            foreach (var name in allFactionNames)
-            {
-                var selection = factionRestrictionsDict.InnerList[name];
-                GUIDrawUtility.FilterSelection(ref selection, allMechs, name);
-                factionRestrictionsDict.InnerList[name] = selection;
-            }
-
-            return factionRestrictionsDict;
-        }*/
-
-    /*    public bool EmergencySignalRaidInbound()
+        foreach (var factionDef in from td in DefDatabase<FactionDef>.AllDefs
+                                   where allFactionNames.Contains(td.defName)
+                                   select td)
         {
-            if (GetExtendedDataStorage() != null)
+            if (!factionRestrictionsDict.InnerList.ContainsKey(factionDef.defName))
             {
-                return Find.TickManager.TicksGame > 0 && Find.TickManager.TicksGame <=
-                    GetExtendedDataStorage().lastEmergencySignalTick + GetExtendedDataStorage().lastEmergencySignalDelay;
+                factionRestrictionsDict.InnerList.Add(factionDef.defName, new Dictionary<string, Record>());
             }
+        }
 
-            return false;
-        }*/
-
-    /*    public bool EmergencySignalRaidCoolingDown()
+        foreach (var name in allFactionNames)
         {
-            if (GetExtendedDataStorage() != null)
-            {
-                return Find.TickManager.TicksGame > 0 && Find.TickManager.TicksGame <=
-                    GetExtendedDataStorage().lastEmergencySignalTick + GetExtendedDataStorage().lastEmergencySignalCooldown;
-            }
+            var selection = factionRestrictionsDict.InnerList[name];
+            GUIDrawUtility.FilterSelection(ref selection, allMechs, name);
+            factionRestrictionsDict.InnerList[name] = selection;
+        }
 
-            return false;
-        }*/
+        return factionRestrictionsDict;
+    }
+
+    public bool EmergencySignalRaidInbound()
+    {
+        if (GetExtendedDataStorage() != null)
+        {
+            return Find.TickManager.TicksGame > 0 && Find.TickManager.TicksGame <=
+                GetExtendedDataStorage().lastEmergencySignalTick + GetExtendedDataStorage().lastEmergencySignalDelay;
+        }
+
+        return false;
+    }
+
+    public bool EmergencySignalRaidCoolingDown()
+    {
+        if (GetExtendedDataStorage() != null)
+        {
+            return Find.TickManager.TicksGame > 0 && Find.TickManager.TicksGame <=
+                GetExtendedDataStorage().lastEmergencySignalTick + GetExtendedDataStorage().lastEmergencySignalCooldown;
+        }
+
+        return false;
+    }
 
     /*    public override void WorldLoaded()
         {

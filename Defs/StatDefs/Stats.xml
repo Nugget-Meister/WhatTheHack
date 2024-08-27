@@ -23,6 +23,15 @@
 			<li Class="WhatTheHack.Stats.StatPart_PowerRate"></li>
 		</parts>
 	</StatDef>
+  <StatDef>
+    <defName>WTH_PowerRatePercentage</defName>
+    <label>Power drain per day</label>
+    <description>How much power the mechanoid uses each day</description>
+    <category>WTH_StatCategory_Hidden</category>
+    <toStringStyle>PercentZero</toStringStyle>
+    <formatString>+{0}</formatString>
+    <alwaysHide>true</alwaysHide>
+  </StatDef>
 	<StatDef>
 		<defName>WTH_BatteryCapacity</defName>
 		<label>Battery capacity</label>
@@ -35,6 +44,15 @@
 			<li Class="WhatTheHack.Stats.StatPart_BatteryCapacity"></li>
 		</parts>
 	</StatDef>
+  <StatDef>
+    <defName>WTH_BatteryCapacityPercentage</defName>
+    <label>Battery capacity</label>
+    <description>The total battery capacity of the mechanoid</description>
+    <category>WTH_StatCategory_Hidden</category>
+    <toStringStyle>PercentZero</toStringStyle>
+    <formatString>+{0}</formatString>
+    <alwaysHide>true</alwaysHide>
+  </StatDef>
 	<StatDef>
 		<defName>WTH_RechargeRate</defName>
 		<label>Power recharge per day</label>

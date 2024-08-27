@@ -172,10 +172,13 @@ public class CompMountable : ThingComp
         var backHeight = GetBackHeight(t);
         var backHeightRelative = backHeight / (float)t.height;
         var textureHeight = curKindLifeStage.bodyGraphicData.drawSize.y;
+
         //If animal texture does not fit in a tile, take this into account
         var extraOffset = textureHeight > 1f ? (textureHeight - 1f) / 2f : 0;
+        
         //Small extra offset, you don't want to draw pawn exactly on back
         extraOffset += 0.5f;
+        
         drawOffset = (textureHeight * backHeightRelative) - extraOffset;
     }
 

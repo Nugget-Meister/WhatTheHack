@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Linq;
 using Verse;
 using WhatTheHack.Buildings;
 
@@ -33,7 +34,8 @@ internal class Alert_NotEnoughPlatforms : Alert
 
     private bool NeedPlatforms(Map map)
     {
-        var hackedMechanoids = map.mapPawns.AllPawnsSpawned.FindAll(p => p.IsHacked() && p.Faction == Faction.OfPlayer);
+        /*var hackedMechanoids = map.mapPawns.AllPawnsSpawned.FindAll(p => p.IsHacked() && p.Faction == Faction.OfPlayer);*/
+        var hackedMechanoids = map.mapPawns.AllPawnsSpawned.ToList().FindAll(p => p.IsHacked() && p.Faction == Faction.OfPlayer);
         if (!map.IsPlayerHome)
         {
             return false;

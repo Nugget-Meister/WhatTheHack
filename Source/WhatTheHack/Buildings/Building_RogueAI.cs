@@ -155,6 +155,7 @@ public class Building_RogueAI : Building
 
         DrawWarmup();
         abilityWarmUpTicks--;
+
         /*
         if (this.RefuelableComp.Fuel < Base.moodAutoDeactivate)
         {
@@ -904,7 +905,8 @@ public class Building_RogueAI : Building
         }
 
         glowerComp.UpdateLit(Map);
-        Map.glowGrid.MarkGlowGridDirty(Position);
+        /*Map.glowGrid.MarkGlowGridDirty(Position);*/
+        Map.glowGrid.DirtyCache(Position);
     }
 
     private void GoRogue_HackMechs()

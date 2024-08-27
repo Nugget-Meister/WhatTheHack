@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -7,6 +8,7 @@ namespace WhatTheHack;
 [DefOf]
 public class WTH_DefOf
 {
+
     public static QuestScriptDef WTH_LongRangeMineralScannerMechParts;
 
     public static HediffDef WTH_TargetingHacked;
@@ -54,7 +56,7 @@ public class WTH_DefOf
 
     public static JobDef WTH_ControlMechanoid_Goto;
 
-    //public static JobDef WTH_Ability;
+    // public static JobDef WTH_Ability;
     public static JobDef WTH_Ability_Repair;
     public static JobDef WTH_Ability_SelfDestruct;
     public static JobDef WTH_Ability_Overdrive;
@@ -70,15 +72,23 @@ public class WTH_DefOf
     public static ThingDef WTH_MechanoidPlatform;
     public static ThingDef WTH_PortableChargingPlatform;
     public static ThingDef WTH_MechanoidParts;
-    public static ThingDef WTH_MineableMechanoidParts;
     public static ThingDef WTH_MechanoidChip;
+
+
+    // Begin Migration from Fleck to Mote
     public static FleckDef WTH_Fleck_Charging;
     public static FleckDef WTH_Fleck_HealingCrossGreen;
+
+    // migrate fleck to mote
+    public static ThingDef WTH_Mote_Charging;
+    public static ThingDef WTH_Mote_HealingCrossGreen;
+
     public static ThingDef WTH_Apparel_MechControllerBelt;
     public static ThingDef WTH_MechanoidData;
     public static ThingDef WTH_RogueAI;
     public static ThingDef WTH_ExtractedBrainData;
 
+    public static ThingDef WTH_MineableMechanoidParts;
 
     public static StatDef WTH_HackingSuccessChance;
     public static StatDef WTH_HackingMaintenanceSpeed;
@@ -121,7 +131,7 @@ public class WTH_DefOf
 
     public static SoundDef WTH_Sound_Overdrive;
 
-    //vanilla
+    // vanilla
     public static IncidentDef ShortCircuit;
     public static BodyPartDef Reactor;
     public static BodyPartGroupDef Waist;
@@ -137,4 +147,9 @@ public class WTH_DefOf
     public static WorkTypeDef Cleaning;
 
     public static ThingDef MineableSteel;
+
+    /* Added afterwards */
+    public static ThingDef VanometricPowerCell;
+    // public static ThingDef Mote_SparkFlash;
+
 }

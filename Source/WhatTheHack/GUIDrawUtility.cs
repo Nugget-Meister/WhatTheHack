@@ -217,7 +217,8 @@ public class GUIDrawUtility
         Widgets.Label(labelPortion,
             def_isPercentage ? $"{Mathf.Round(slider.Value * 100f):F0}%" : slider.Value.ToString("F2"));
 
-        var val = Widgets.HorizontalSlider_NewTemp(sliderPortion, slider.Value, def_min, def_max, true);
+        /*var val = Widgets.HorizontalSlider_NewTemp(sliderPortion, slider.Value, def_min, def_max, true);*/
+        var val = Widgets.HorizontalSlider(sliderPortion, slider.Value, def_min, def_max, true);
         var change = slider.Value != val;
 
         slider.Value = val;

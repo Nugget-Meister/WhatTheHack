@@ -142,7 +142,7 @@ public static class TextureUtility
                 var xYTo = (int)Mathf.Min(Mathf.Ceil(vCenter.y + (vPixelSize.y * 0.5f)), vSourceSize.y);
 
                 //*** Loop and accumulate
-                var unused = new Vector4();
+                /*var unused = new Vector4();*/
                 var oColorTemp = new Color();
                 float xGridCount = 0;
                 for (var iy = xYFrom; iy < xYTo; iy++)

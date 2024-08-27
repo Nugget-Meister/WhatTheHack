@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Linq;
 using Verse;
 using Verse.AI;
 using WhatTheHack.Needs;
@@ -18,7 +19,8 @@ internal class WorkGiver_PerformMaintenance : WorkGiver_Scanner
             return true;
         }
 
-        return pawn.Map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.IsHacked() && PawnNeedsMaintenance(p)) == null;
+        /* return pawn.Map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.IsHacked() && PawnNeedsMaintenance(p)) == null; */
+        return pawn.Map.mapPawns.AllPawnsSpawned.ToList().FirstOrDefault(p => p.IsHacked() && PawnNeedsMaintenance(p)) == null;
     }
 
     private bool PawnNeedsMaintenance(Pawn mech)

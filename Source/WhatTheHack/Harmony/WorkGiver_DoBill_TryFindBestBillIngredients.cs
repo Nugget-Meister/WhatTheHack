@@ -17,7 +17,8 @@ internal class WorkGiver_DoBill_TryFindBestBillIngredients
         if (bill.recipe == WTH_DefOf.WTH_Craft_VanometricModule)
         {
             thing = pawn.Map.spawnedThings.FirstOrDefault(
-                t => t.GetInnerIfMinified().def == ThingDefOf.VanometricPowerCell &&
+                /*t => t.GetInnerIfMinified().def == ThingDefOf.VanometricPowerCell &&*/
+                t => t.GetInnerIfMinified().def == WTH_DefOf.VanometricPowerCell &&
                      bill.IsFixedOrAllowedIngredient(t) &&
                      pawn.CanReach(t, PathEndMode.Touch, Danger.Deadly) &&
                      !t.IsForbidden(pawn) &&

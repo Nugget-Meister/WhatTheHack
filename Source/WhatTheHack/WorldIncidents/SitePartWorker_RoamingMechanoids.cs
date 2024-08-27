@@ -17,10 +17,12 @@ public class SitePartWorker_RoamingMechanoids : SitePartWorker
         var incidentParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.Misc, map);
         incidentParms.forced = true;
     }
-    /*
-    public override string GetPostProcessedDescriptionDialogue(Site site, SiteCoreOrPartBase siteCoreOrPart)
+
+
+    // Unsure what this does
+    /*public override string GetPostProcessedDescriptionDialogue(Site site, SiteCoreOrPartBase siteCoreOrPart)
     {
         return string.Format(base.GetPostProcessedDescriptionDialogue(site, siteCoreOrPart), GenLabel.BestKindLabel(siteCoreOrPart.parms.animalKind, Gender.None, true));
-    }
-    */
+    }*/
+
 }
